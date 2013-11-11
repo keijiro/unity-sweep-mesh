@@ -34,38 +34,31 @@ public class RopeBuilder : MonoBehaviour
         limit.spring = 40.0f;
         joint.linearLimit = limit;
 
-        /*
         limit.limit = 10.0f;
         joint.angularYLimit = limit;
         joint.angularZLimit = limit;
         joint.highAngularXLimit = limit;
         joint.lowAngularXLimit = limit;
-        */
-        
+
         joint.xMotion = ConfigurableJointMotion.Locked;
         joint.yMotion = ConfigurableJointMotion.Locked;
         joint.zMotion = ConfigurableJointMotion.Locked;
-        joint.angularXMotion = ConfigurableJointMotion.Free;
-        joint.angularYMotion = ConfigurableJointMotion.Free;
-        joint.angularZMotion = ConfigurableJointMotion.Free;
+        joint.angularXMotion = ConfigurableJointMotion.Limited;
+        joint.angularYMotion = ConfigurableJointMotion.Limited;
+        joint.angularZMotion = ConfigurableJointMotion.Limited;
     }
 
     void BuildChain(GameObject root)
     {
-        // Make the first node.
-        var node = new GameObject ("first node");
-
-        node.transform.parent = root.transform;
-        node.transform.localPosition = transform.position;
-
-        AddRigidbody (node, true);
+        AddRigidbody (root, true);
 
         // Make the chain of nodes.
+        var node = root;
         for (var i = 0; i < nodeNum; i++) {
             var newNode = new GameObject ("node " + i);
 
             newNode.transform.parent = root.transform;
-            newNode.transform.position = node.transform.position + root.transform.forward * interval;
+            newNode.transform.localPosition = Vector3.forward * interval * (i + 1);
 
             AddRigidbody (newNode, false);
             AddJoint (node, newNode);

@@ -17,6 +17,54 @@ public class MeshExtruder : MonoBehaviour
 
     #endregion
 
+    #region Base shape generator
+
+    Vector3[] CreateSquareBase (float scale)
+    {
+        var array = new Vector3[4];
+        array [0] = new Vector3 (-1, -1, 0) * scale;
+        array [1] = new Vector3 (+1, -1, 0) * scale;
+        array [2] = new Vector3 (+1, +1, 0) * scale;
+        array [3] = new Vector3 (-1, +1, 0) * scale;
+        return array;
+    }
+
+    #endregion
+
+    #region Curve function
+
+    AnimationCurve[] CreateCurveXYZ ()
+    {
+        var curves = new AnimationCurve[] {
+            new AnimationCurve (),
+            new AnimationCurve (),
+            new AnimationCurve (),
+            new AnimationCurve (),
+            new AnimationCurve (),
+            new AnimationCurve ()
+        };
+
+        var time = 0.0f;
+        var delta = 1.0f / (transform.childCount - 1);
+
+        foreach (Transform point in transform)
+        {
+            var position = point.localPosition;
+            var up = point.localRotation * Vector3.forward;
+            curves [0].AddKey (time, position.x);
+            curves [1].AddKey (time, position.y);
+            curves [2].AddKey (time, position.z);
+            curves [3].AddKey (time, up.x);
+            curves [4].AddKey (time, up.y);
+            curves [5].AddKey (time, up.z);
+            time += delta;
+        }
+
+        return curves;
+    }
+
+    #endregion
+
     #region MonoBehaviour
 
     void Start ()
@@ -28,72 +76,88 @@ public class MeshExtruder : MonoBehaviour
     
     void Update ()
     {
-        var baseShape = new Vector3[4];
-        
-        baseShape [0] = new Vector3 (-1, -1, 0) * baseScale;
-        baseShape [1] = new Vector3 (+1, -1, 0) * baseScale;
-        baseShape [2] = new Vector3 (+1, +1, 0) * baseScale;
-        baseShape [3] = new Vector3 (-1, +1, 0) * baseScale;
+        var shape = CreateSquareBase (baseScale);
+        var curves = CreateCurveXYZ ();
 
-        var cvx = new AnimationCurve ();
-        var cvy = new AnimationCurve ();
-        var cvz = new AnimationCurve ();
-        
-        var pointCount = transform.childCount;
-        var time = 0.0f;
-        foreach (Transform point in transform) {
-            cvx.AddKey (time, point.position.x);
-            cvy.AddKey (time, point.position.y);
-            cvz.AddKey (time, point.position.z);
-            time += 1.0f / (pointCount - 1);
-        }
-        
-        var vertices = new Vector3[2 * baseShape.Length * division];
-        var up = Vector3.forward;
-        var offs = 0;
-        var prev = new Vector3 (cvx.Evaluate (-0.1f), cvy.Evaluate (-0.1f), cvz.Evaluate (-0.1f));
-        var prevf = (new Vector3 (cvx.Evaluate (0), cvy.Evaluate (0), cvz.Evaluate (0)) - prev).normalized;
-        
-        for (var i = 0; i < division; i++) {
-            time = (float)i / (division - 1);
-            var p = new Vector3 (cvx.Evaluate (time), cvy.Evaluate (time), cvz.Evaluate (time));
-            
-            var f = (p - prev).normalized;
-            
-            up = Quaternion.FromToRotation (prevf, f) * up;
-            
-            var r = Vector3.Cross (up, f).normalized;
-            
-            foreach (var v in baseShape) {
-                var temp = p + r * v.x + up * v.y;
-                vertices [offs++] = temp;
-                vertices [offs++] = temp;
+        var vertices = new Vector3[shape.Length * (division * 2 + 2)];
+        var offset = 0;
+
+        for (var i = 0; i < division; i++)
+        {
+            var t1 = (float)(i + 0) / division;
+            var t2 = (float)(i + 1) / division;
+
+            var p1 = new Vector3 (curves [0].Evaluate (t1), curves [1].Evaluate (t1), curves [2].Evaluate (t1));
+            var p2 = new Vector3 (curves [0].Evaluate (t2), curves [1].Evaluate (t2), curves [2].Evaluate (t2));
+
+            var ny = new Vector3 (curves [3].Evaluate (t1), curves [4].Evaluate (t1), curves [5].Evaluate (t1)).normalized;
+            var nz = (p2 - p1).normalized;
+            var nx = Vector3.Cross (ny, nz);
+
+            foreach (var v in shape)
+            {
+                var p = p1 + nx * v.x + ny * v.y;
+                vertices [offset++] = p;
+                vertices [offset++] = p;
             }
-            
-            prev = p;
-            prevf = f;
         }
 
-        var indices = new int[baseShape.Length * (division - 1) * 24];
-        offs = 0;
-        for (var i = 0; i < division - 1; i++) {
-            for (var j = 0; j < baseShape.Length; j++) {
-                var bi1 = baseShape.Length * 2 * i + 2 * j + 1;
-                var bi2 = baseShape.Length * 2 * i + 2 * ((j + 1) % baseShape.Length);
+        // Head cap.
+        for (var i = 0; i < shape.Length; i++)
+        {
+            vertices[offset++] = vertices[i * 2];
+        }
 
-                indices[offs++] = bi1;
-                indices[offs++] = bi2;
-                indices[offs++] = bi2 + baseShape.Length * 2;
+        // Tail cap.
+        {
+            var bi = offset - shape.Length * 3;
+            for (var i = 0; i < shape.Length; i++)
+            {
+                vertices[offset++] = vertices[bi + i * 2];
+            }
+        }
 
-                indices[offs++] = bi1;
-                indices[offs++] = bi2 + baseShape.Length * 2;
-                indices[offs++] = bi1 + baseShape.Length * 2;
+        var indices = new int[(division - 1) * shape.Length * 6 + (shape.Length - 2) * 6];
+        offset = 0;
+
+        for (var i = 0; i < division - 1; i++)
+        {
+            for (var i2 = 0; i2 < shape.Length; i2++)
+            {
+                var bi1 = 2 * (shape.Length * i + i2) + 1;
+                var bi2 = 2 * (shape.Length * i + (i2 + 1) % shape.Length);
+
+                indices [offset++] = bi1;
+                indices [offset++] = bi2;
+                indices [offset++] = bi2 + shape.Length * 2;
+
+                indices [offset++] = bi1;
+                indices [offset++] = bi2 + shape.Length * 2;
+                indices [offset++] = bi1 + shape.Length * 2;
+            }
+        }
+
+        // Make caps with a trignale fan.
+        {
+            var bi1 = vertices.Length - shape.Length * 2;
+            var bi2 = vertices.Length - shape.Length;
+
+            for (var i = 1; i < shape.Length - 1; i++)
+            {
+                indices [offset++] = bi1;
+                indices [offset++] = bi1 + i + 1;
+                indices [offset++] = bi1 + i;
+
+                indices [offset++] = bi2;
+                indices [offset++] = bi2 + i;
+                indices [offset++] = bi2 + i + 1;
             }
         }
 
         mesh.vertices = vertices;
         mesh.SetIndices (indices, MeshTopology.Triangles, 0);
         mesh.RecalculateNormals ();
+        mesh.RecalculateBounds ();
     }
 
     #endregion

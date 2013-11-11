@@ -148,6 +148,7 @@ GameObject:
   - 33: {fileID: 713574242}
   - 23: {fileID: 713574241}
   - 114: {fileID: 713574243}
+  - 114: {fileID: 713574244}
   m_Layer: 0
   m_Name: Extruder
   m_TagString: Untagged
@@ -161,7 +162,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 713574238}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106709}
   m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -177,8 +178,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea620c81cf5744c9eb543a838333a465, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  division: 100
-  baseScale: .5
+  division: 30
+  baseScale: .75
 --- !u!23 &713574241
 Renderer:
   m_ObjectHideFlags: 0
@@ -219,10 +220,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeNum: 5
-  interval: 2
+  interval: 2.4000001
   mass: 1
   drag: 1
   angularDrag: .100000001
+--- !u!114 &713574244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 713574238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb190f4e4f1004a8aac9933e8e7b20ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1508826644
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,7 +313,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1508826644}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: -5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
