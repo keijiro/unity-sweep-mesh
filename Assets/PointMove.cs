@@ -13,8 +13,8 @@ public class PointMove : MonoBehaviour {
         transform.position += transform.up * Time.deltaTime;
 
         transform.localRotation =
-            Quaternion.AngleAxis (Perlin.Noise(transform.position) * Time.deltaTime * 300.0f, transform.right) *
-            Quaternion.AngleAxis (Perlin.Noise(transform.position + Vector3.right) * Time.deltaTime * 300.0f, transform.forward) *
+            Quaternion.AngleAxis (Perlin.Noise(transform.position) * Time.deltaTime * 600.0f, transform.right) *
+            Quaternion.AngleAxis (Perlin.Noise(transform.position + Vector3.right) * Time.deltaTime * 600.0f, transform.forward) *
             transform.localRotation;
 	}
 }
