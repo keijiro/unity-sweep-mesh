@@ -37,7 +37,7 @@ public class MeshExtruder : MonoBehaviour
         }
         
         var vertices = new Vector3[2 * baseShape.Length * division];
-        var up = Vector3.up;
+        var up = Vector3.forward;
         var offs = 0;
         var prev = new Vector3 (cvx.Evaluate (-0.1f), cvy.Evaluate (-0.1f), cvz.Evaluate (-0.1f));
         var prevf = (new Vector3 (cvx.Evaluate (0), cvy.Evaluate (0), cvz.Evaluate (0)) - prev).normalized;
