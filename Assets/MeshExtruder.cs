@@ -3,9 +3,21 @@ using System.Collections;
 
 public class MeshExtruder : MonoBehaviour
 {
+    #region Public properties
+
     public int division = 800;
     public float baseScale = 1.0f;
+
+    #endregion
+
+
+    #region Private objects
+
     Mesh mesh;
+
+    #endregion
+
+    #region MonoBehaviour
 
     void Start ()
     {
@@ -83,4 +95,6 @@ public class MeshExtruder : MonoBehaviour
         mesh.SetIndices (indices, MeshTopology.Triangles, 0);
         mesh.RecalculateNormals ();
     }
+
+    #endregion
 }
