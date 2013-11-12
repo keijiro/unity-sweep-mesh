@@ -50,7 +50,7 @@ public class MeshExtruder : MonoBehaviour
         foreach (Transform point in transform)
         {
             var position = point.localPosition;
-            var up = point.localRotation * Vector3.forward;
+            var up = point.localRotation * Vector3.up;
             curves [0].AddKey (time, position.x);
             curves [1].AddKey (time, position.y);
             curves [2].AddKey (time, position.z);

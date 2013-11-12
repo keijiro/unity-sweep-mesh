@@ -50,10 +50,11 @@ public class RopeBuilder : MonoBehaviour
 
     void BuildChain(GameObject root)
     {
-        AddRigidbody (root, true);
+        var node = new GameObject ("head");
+        node.transform.parent = root.transform;
+        AddRigidbody (node, true);
 
         // Make the chain of nodes.
-        var node = root;
         for (var i = 0; i < nodeNum; i++) {
             var newNode = new GameObject ("node " + i);
 
