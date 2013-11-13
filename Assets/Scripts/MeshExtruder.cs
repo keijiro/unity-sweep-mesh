@@ -7,6 +7,9 @@ public class MeshExtruder : MonoBehaviour
 
     public int division = 800;
     public float thickness = 1.0f;
+    public float noiseLevel = 0.0f;
+    public float noiseFreq = 0.1f;
+    public int noiseFractal = 0;
 
     #endregion
 
@@ -14,7 +17,6 @@ public class MeshExtruder : MonoBehaviour
     #region Private objects
 
     Mesh mesh;
-    AnimationCurve thicknessAnimation;
 
     #endregion
 
@@ -73,8 +75,6 @@ public class MeshExtruder : MonoBehaviour
         mesh = new Mesh ();
         mesh.MarkDynamic ();
         GetComponent<MeshFilter> ().sharedMesh = mesh;
-
-        thicknessAnimation = new AnimationCurve ();
     }
 
     void Update ()
@@ -99,8 +99,8 @@ public class MeshExtruder : MonoBehaviour
 
             foreach (var v in shape)
             {
-                var t = thickness * (Perlin.Fbm(p1 * 0.2f, 3) + 0.6f) * 2.0f;
-                var p = p1 + nx * v.x * t + ny * v.y * t;
+                var t = thickness + Perlin.Fbm(p1 * noiseFreq, noiseFractal) * noiseLevel;
+                var p = p1 + nx * (v.x * t) + ny * (v.y * t);
                 vertices [offset++] = p;
                 vertices [offset++] = p;
             }

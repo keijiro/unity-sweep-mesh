@@ -124,6 +124,7 @@ MonoBehaviour:
   mass: 1
   drag: .100000001
   angularDrag: .100000001
+  colliderRadius: 1
 --- !u!23 &21562853
 Renderer:
   m_ObjectHideFlags: 0
@@ -167,7 +168,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   division: 50
-  thickness: .75
+  thickness: 1
+  noiseLevel: 2
+  noiseFreq: .300000012
+  noiseFractal: 1
 --- !u!4 &21562856
 Transform:
   m_ObjectHideFlags: 0
@@ -473,6 +477,7 @@ MonoBehaviour:
   mass: 1
   drag: .100000001
   angularDrag: .100000001
+  colliderRadius: 1
 --- !u!23 &930545242
 Renderer:
   m_ObjectHideFlags: 0
@@ -517,6 +522,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   division: 50
   thickness: 1
+  noiseLevel: 2
+  noiseFreq: .300000012
+  noiseFractal: 1
 --- !u!4 &930545245
 Transform:
   m_ObjectHideFlags: 0
@@ -926,6 +934,7 @@ MonoBehaviour:
   mass: 1
   drag: .100000001
   angularDrag: .100000001
+  colliderRadius: 1
 --- !u!23 &1628536094
 Renderer:
   m_ObjectHideFlags: 0
@@ -970,6 +979,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   division: 50
   thickness: 1
+  noiseLevel: 2
+  noiseFreq: .300000012
+  noiseFractal: 1
 --- !u!4 &1628536097
 Transform:
   m_ObjectHideFlags: 0
@@ -1031,6 +1043,7 @@ MonoBehaviour:
   mass: 1
   drag: .100000001
   angularDrag: .100000001
+  colliderRadius: 1
 --- !u!23 &1628812075
 Renderer:
   m_ObjectHideFlags: 0
@@ -1075,6 +1088,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   division: 50
   thickness: 1
+  noiseLevel: 2
+  noiseFreq: .300000012
+  noiseFractal: 1
 --- !u!4 &1628812078
 Transform:
   m_ObjectHideFlags: 0

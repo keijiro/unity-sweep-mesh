@@ -12,7 +12,7 @@ public class Spinner : MonoBehaviour
         ry = Random.Range (10.0f, 100.0f);
     }
 
-    void Update ()
+    void FixedUpdate ()
     {
         transform.localRotation =
             Quaternion.AngleAxis (Time.time * rx, Vector3.right) *

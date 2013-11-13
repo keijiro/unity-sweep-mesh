@@ -10,6 +10,7 @@ public class RopeBuilder : MonoBehaviour
     public float mass = 1.0f;
     public float drag = 0.1f;
     public float angularDrag = 0.1f;
+    public float colliderRadius;
 
     #endregion
 
@@ -27,10 +28,10 @@ public class RopeBuilder : MonoBehaviour
         {
             rb.isKinematic = true;
         }
-        else
+        else if (colliderRadius > 0.0f)
         {
             var col = node.AddComponent<SphereCollider> ();
-            col.radius = 1.0f;
+            col.radius = colliderRadius;
         }
     }
     
