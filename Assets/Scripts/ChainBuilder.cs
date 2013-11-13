@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RopeBuilder : MonoBehaviour
+public class ChainBuilder : MonoBehaviour
 {
     #region Public properties
 

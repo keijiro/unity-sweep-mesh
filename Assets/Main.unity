@@ -168,8 +168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   division: 50
-  thickness: 1
-  noiseLevel: 2
+  thickness: .75
+  noiseLevel: 0
   noiseFreq: .300000012
   noiseFractal: 1
 --- !u!4 &21562856
@@ -521,8 +521,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   division: 50
-  thickness: 1
-  noiseLevel: 2
+  thickness: .75
+  noiseLevel: 0
   noiseFreq: .300000012
   noiseFractal: 1
 --- !u!4 &930545245
@@ -978,8 +978,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   division: 50
-  thickness: 1
-  noiseLevel: 2
+  thickness: .75
+  noiseLevel: 0
   noiseFreq: .300000012
   noiseFractal: 1
 --- !u!4 &1628536097
@@ -1087,8 +1087,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   division: 50
-  thickness: 1
-  noiseLevel: 2
+  thickness: .75
+  noiseLevel: 0
   noiseFreq: .300000012
   noiseFractal: 1
 --- !u!4 &1628812078
