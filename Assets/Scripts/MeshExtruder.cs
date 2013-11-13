@@ -6,7 +6,7 @@ public class MeshExtruder : MonoBehaviour
     #region Public properties
 
     public int division = 800;
-    public float baseScale = 1.0f;
+    public float thickness = 1.0f;
 
     #endregion
 
@@ -14,18 +14,19 @@ public class MeshExtruder : MonoBehaviour
     #region Private objects
 
     Mesh mesh;
+    AnimationCurve thicknessAnimation;
 
     #endregion
 
     #region Base shape generator
 
-    Vector3[] CreateSquareBase (float scale)
+    Vector3[] CreateSquareBase ()
     {
         var array = new Vector3[4];
-        array [0] = new Vector3 (-1, -1, 0) * scale;
-        array [1] = new Vector3 (+1, -1, 0) * scale;
-        array [2] = new Vector3 (+1, +1, 0) * scale;
-        array [3] = new Vector3 (-1, +1, 0) * scale;
+        array [0] = new Vector3 (-1, -1, 0);
+        array [1] = new Vector3 (+1, -1, 0);
+        array [2] = new Vector3 (+1, +1, 0);
+        array [3] = new Vector3 (-1, +1, 0);
         return array;
     }
 
@@ -72,11 +73,13 @@ public class MeshExtruder : MonoBehaviour
         mesh = new Mesh ();
         mesh.MarkDynamic ();
         GetComponent<MeshFilter> ().sharedMesh = mesh;
+
+        thicknessAnimation = new AnimationCurve ();
     }
-    
+
     void Update ()
     {
-        var shape = CreateSquareBase (baseScale);
+        var shape = CreateSquareBase ();
         var curves = CreateCurveXYZ ();
 
         var vertices = new Vector3[shape.Length * (division * 2 + 2)];
@@ -96,7 +99,8 @@ public class MeshExtruder : MonoBehaviour
 
             foreach (var v in shape)
             {
-                var p = p1 + nx * v.x + ny * v.y;
+                var t = thickness * (Perlin.Fbm(p1 * 0.2f, 3) + 0.6f) * 2.0f;
+                var p = p1 + nx * v.x * t + ny * v.y * t;
                 vertices [offset++] = p;
                 vertices [offset++] = p;
             }

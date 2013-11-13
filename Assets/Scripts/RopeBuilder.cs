@@ -18,10 +18,20 @@ public class RopeBuilder : MonoBehaviour
     void AddRigidbody (GameObject node, bool isFixed)
     {
         var rb = node.AddComponent<Rigidbody> ();
+
         rb.mass = mass;
         rb.drag = drag;
         rb.angularDrag = angularDrag;
-        rb.isKinematic = isFixed;
+
+        if (isFixed)
+        {
+            rb.isKinematic = true;
+        }
+        else
+        {
+            var col = node.AddComponent<SphereCollider> ();
+            col.radius = 1.0f;
+        }
     }
     
     void AddJoint (GameObject node, GameObject boundTo)
@@ -52,6 +62,7 @@ public class RopeBuilder : MonoBehaviour
     {
         var node = new GameObject ("head");
         node.transform.parent = root.transform;
+        node.layer = root.layer;
         AddRigidbody (node, true);
 
         // Make the chain of nodes.
@@ -60,6 +71,7 @@ public class RopeBuilder : MonoBehaviour
 
             newNode.transform.parent = root.transform;
             newNode.transform.localPosition = Vector3.forward * interval * (i + 1);
+            newNode.layer = root.layer;
 
             AddRigidbody (newNode, false);
             AddJoint (node, newNode);
