@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   division: 50
+  points: 4
   thickness: .75
   noiseLevel: 0
   noiseFreq: .300000012
@@ -453,6 +454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   division: 50
+  points: 4
   thickness: .75
   noiseLevel: 0
   noiseFreq: .300000012
@@ -1319,6 +1321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   division: 50
+  points: 4
   thickness: .75
   noiseLevel: 0
   noiseFreq: .300000012
@@ -1467,6 +1470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   division: 50
+  points: 4
   thickness: .75
   noiseLevel: 0
   noiseFreq: .300000012
