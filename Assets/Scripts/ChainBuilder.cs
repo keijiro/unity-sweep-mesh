@@ -59,7 +59,7 @@ public class ChainBuilder : MonoBehaviour
         joint.angularZMotion = ConfigurableJointMotion.Limited;
     }
 
-    void BuildChain(GameObject root)
+    void BuildChain (GameObject root)
     {
         var node = new GameObject ("head");
         node.transform.parent = root.transform;
@@ -67,7 +67,8 @@ public class ChainBuilder : MonoBehaviour
         AddRigidbody (node, true);
 
         // Make the chain of nodes.
-        for (var i = 0; i < nodeNum; i++) {
+        for (var i = 0; i < nodeNum; i++)
+        {
             var newNode = new GameObject ("node " + i);
 
             newNode.transform.parent = root.transform;

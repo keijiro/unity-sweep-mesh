@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MeshExtruder : MonoBehaviour
+public class MeshSweeper : MonoBehaviour
 {
     #region Public properties
 
@@ -99,7 +99,7 @@ public class MeshExtruder : MonoBehaviour
 
             foreach (var v in shape)
             {
-                var t = thickness + Perlin.Fbm(p1 * noiseFreq, noiseFractal) * noiseLevel;
+                var t = thickness + Perlin.Fbm (p1 * noiseFreq, noiseFractal) * noiseLevel;
                 var p = p1 + nx * (v.x * t) + ny * (v.y * t);
                 vertices [offset++] = p;
                 vertices [offset++] = p;
@@ -109,7 +109,7 @@ public class MeshExtruder : MonoBehaviour
         // Head cap.
         for (var i = 0; i < shape.Length; i++)
         {
-            vertices[offset++] = vertices[i * 2];
+            vertices [offset++] = vertices [i * 2];
         }
 
         // Tail cap.
@@ -117,7 +117,7 @@ public class MeshExtruder : MonoBehaviour
             var bi = offset - shape.Length * 3;
             for (var i = 0; i < shape.Length; i++)
             {
-                vertices[offset++] = vertices[bi + i * 2];
+                vertices [offset++] = vertices [bi + i * 2];
             }
         }
 
