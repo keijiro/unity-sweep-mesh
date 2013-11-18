@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MeshSweeper : MonoBehaviour
+public class SweepMesh : MonoBehaviour
 {
     #region Public properties
 

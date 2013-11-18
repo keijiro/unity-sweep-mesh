@@ -88,7 +88,7 @@ GameObject:
   - 114: {fileID: 21562852}
   - 114: {fileID: 21562851}
   m_Layer: 9
-  m_Name: Sweeper
+  m_Name: Sweep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -324,6 +324,10 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 986822522}
+    - target: {fileID: 100000, guid: d2ccab02181054843bbdd493f567244e, type: 2}
+      propertyPath: m_Name
+      value: Sweep
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d2ccab02181054843bbdd493f567244e, type: 2}
   m_RootGameObject: {fileID: 290643189}
@@ -369,7 +373,7 @@ GameObject:
   - 114: {fileID: 290643191}
   - 114: {fileID: 290643190}
   m_Layer: 9
-  m_Name: Sweeper
+  m_Name: Sweep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -503,6 +507,10 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 1983791193}
+    - target: {fileID: 100000, guid: d2ccab02181054843bbdd493f567244e, type: 2}
+      propertyPath: m_Name
+      value: Sweep
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d2ccab02181054843bbdd493f567244e, type: 2}
   m_RootGameObject: {fileID: 1831217933}
@@ -732,6 +740,10 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 1983791193}
+    - target: {fileID: 100000, guid: d2ccab02181054843bbdd493f567244e, type: 2}
+      propertyPath: m_Name
+      value: Sweep
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d2ccab02181054843bbdd493f567244e, type: 2}
   m_RootGameObject: {fileID: 21562850}
@@ -776,6 +788,10 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 616491095}
+    - target: {fileID: 100000, guid: d2ccab02181054843bbdd493f567244e, type: 2}
+      propertyPath: m_Name
+      value: Sweep
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d2ccab02181054843bbdd493f567244e, type: 2}
   m_RootGameObject: {fileID: 1587083422}
@@ -1223,7 +1239,7 @@ GameObject:
   - 114: {fileID: 1587083424}
   - 114: {fileID: 1587083423}
   m_Layer: 9
-  m_Name: Sweeper
+  m_Name: Sweep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1371,7 +1387,7 @@ GameObject:
   - 114: {fileID: 1831217935}
   - 114: {fileID: 1831217934}
   m_Layer: 9
-  m_Name: Sweeper
+  m_Name: Sweep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
