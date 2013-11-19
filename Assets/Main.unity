@@ -167,9 +167,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea620c81cf5744c9eb543a838333a465, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  division: 50
-  points: 4
-  thickness: .75
+  pathDivision: 100
+  profileShape: 0
+  profilePoints: 4
+  profileScale: 1.5
+  profileInner: .5
   noiseLevel: 0
   noiseFreq: .300000012
   noiseFractal: 1
@@ -331,7 +333,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: d2ccab02181054843bbdd493f567244e, type: 2}
       propertyPath: points
-      value: 4
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d2ccab02181054843bbdd493f567244e, type: 2}
@@ -457,9 +459,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea620c81cf5744c9eb543a838333a465, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  division: 50
-  points: 4
-  thickness: .75
+  pathDivision: 100
+  profileShape: 0
+  profilePoints: 4
+  profileScale: 1.5
+  profileInner: .5
   noiseLevel: 0
   noiseFreq: .300000012
   noiseFractal: 1
@@ -519,7 +523,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: d2ccab02181054843bbdd493f567244e, type: 2}
       propertyPath: points
-      value: 4
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d2ccab02181054843bbdd493f567244e, type: 2}
@@ -756,7 +760,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: d2ccab02181054843bbdd493f567244e, type: 2}
       propertyPath: points
-      value: 4
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d2ccab02181054843bbdd493f567244e, type: 2}
@@ -808,7 +812,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: d2ccab02181054843bbdd493f567244e, type: 2}
       propertyPath: points
-      value: 4
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d2ccab02181054843bbdd493f567244e, type: 2}
@@ -1336,9 +1340,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea620c81cf5744c9eb543a838333a465, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  division: 50
-  points: 4
-  thickness: .75
+  pathDivision: 100
+  profileShape: 0
+  profilePoints: 4
+  profileScale: 1.5
+  profileInner: .5
   noiseLevel: 0
   noiseFreq: .300000012
   noiseFractal: 1
@@ -1485,9 +1491,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea620c81cf5744c9eb543a838333a465, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  division: 50
-  points: 4
-  thickness: .75
+  pathDivision: 100
+  profileShape: 0
+  profilePoints: 4
+  profileScale: 1.5
+  profileInner: .5
   noiseLevel: 0
   noiseFreq: .300000012
   noiseFractal: 1
